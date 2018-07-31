@@ -6,6 +6,14 @@ public class Deleted_floor : MonoBehaviour {
 
     private bool isUse = true;
 
+    PlayerControlling PlayerStatus;
+
+
+    void Awake()
+    {
+        PlayerStatus=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
      //   Debug.Log("hi");
@@ -14,8 +22,6 @@ public class Deleted_floor : MonoBehaviour {
             isUse = true;
         }
     }
-
-
     void OnTriggerExit2D(Collider2D other)
     {
      //   Debug.Log("run?");
@@ -25,13 +31,24 @@ public class Deleted_floor : MonoBehaviour {
             StartCoroutine("counter");
         }
     }
+    
+    void Update()
+    {
+        if (!PlayerStatus.isAlive())
+            this.isOver();
+    }
+    
+    void isOver()
+    {
+        StopAllCoroutines();
+    }
     IEnumerator counter()
     {
      //   Debug.Log("run");
-       yield return new WaitForSeconds(3);
+       yield return new WaitForSeconds(5);
        if (isUse == false)
        {
-            Debug.Log("destroy!");
+           // Debug.Log("destroy!");
             Destroy(gameObject);            
        }
        StartCoroutine("counter");

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 /* Rule
  * 1.   폴더는 StaticObject (화면이 이동해도 움직이지 않는 오브젝트들)
@@ -26,23 +28,36 @@ using UnityEngine;
 public class Manager : MonoBehaviour {
     //게임 매니징 스크립트. '메인' 화면에 들어갈 예정'.
     //테스트 시에는 'Tutorial' 씬에 속함.
-
-    
-
-
-
+    GameObject RestartButton;
 	void Awake () {
-        
+        RestartButton = GameObject.FindGameObjectWithTag("RestartButton");
+        RestartButton.transform.position = GameObject.FindGameObjectWithTag("JumpButton").transform.position;
+        RestartButton.SetActive(false);
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ExitGame();
+        }
     }
     public void GameEnd()       //스테이지 실패&종료 시
-    {
+    {        
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().Shutdown();        //카메라 멈추기. 
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl> ().Shutdown();
         GetComponent<Manager_score>().stoper();
+        Select();
     }
     public void ExitGame()      //게임 종료 시 <- 저장 등등
     {
-
+            Application.Quit();
+    }
+    void Select() {
+        RestartButton.SetActive(true);
+    }
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 	
 

@@ -11,13 +11,15 @@ public class Mapping : MonoBehaviour {
     public GameObject background; //배경
     public GameObject skybox; //하늘 배경
     [Header("Accessories")]
+    public bool isShort = true;
     public GameObject[] bgObject; //백그라운드 오브젝트 (게임플레이에 영향x)
     public float[] frequency;   //백그라운드 오브젝트 빈도 수, 반드시 개수 일치시킬것.
 
     [Header("Setdatas")]
     public int mapSize; //맵 사이즈
     public int horizentalSize; //가로길이
-    public int[] deletedFloor;  //바닥을 지울 위치
+    public int EndPostion;
+    public int[] deletedFloor;  //바닥을 지울 위치    
     private int deletedPick;
 
     private Vector3 originFloorPostion;
@@ -34,13 +36,18 @@ public class Mapping : MonoBehaviour {
         FloorTransform.position = new Vector3(floor.transform.position.x, floor.transform.position.y, floor.transform.position.z);
         deletedPick = 0;
 
-       // Debug.Log(floor.transform.position.ToString());
-       // Debug.Log(originFloorPostion.ToString());
-       // Debug.Log(FloorTransform.position.ToString());
+        if (EndPostion == 0)
+            EndPostion = mapSize;
 
-        copyFloor();
+        // Debug.Log(floor.transform.position.ToString());
+        // Debug.Log(originFloorPostion.ToString());
+        // Debug.Log(FloorTransform.position.ToString());
+
+        if (isShort) copyFloorA2();
+        else { copyFloor(); }
         copyBground();
         copySkybox();
+        setEndline();
 
         if (bgObject.Length != 0)
         {
@@ -53,23 +60,58 @@ public class Mapping : MonoBehaviour {
     }
     void copyFloor() //바닥 형성 스크립트.
     {
-        /* 1. 추락구간을 위해 바닥 길이를 1/2로 감소
-         * 2. 이로 인해 줄어든 1개 블럭의 길이로, 생성 개수를 2배로 늘림
-         * 3. (변화 : horizentalSize -> horizentalSize/2, mapsize -> mapsize*2)
+        /* 1. 추락구간 미 형성 스크립트
          */
         //FloorTransform.position = new Vector3(originFloorPostion.x - horizentalSize, originFloorPostion.y, 0);
         //Instantiate(floor, FloorTransform);
 
-        for (int i = -1; i < mapSize * 2; i++) {
+        for (int i = -1; i < mapSize; i++) {
             //FloorTransform.position = new Vector3(originFloorPostion.x+(i * horizentalSize), FloorTransform.position.y, 0) ;
-            Debug.Log(FloorTransform.position.ToString());
+            //Debug.Log(FloorTransform.position.ToString());
             if (deletedFloor.Length != 0)
             {
                 if ((i == deletedFloor[deletedPick]) && (deletedPick < deletedFloor.Length))
                 {    //삭제 포인트 동일시.
                     if (deletedPick + 1 != deletedFloor.Length)
                     {
-                        Instantiate(deadspace, new Vector3(originFloorPostion.x + (i * horizentalSize / 2), FloorTransform.position.y-3, FloorTransform.position.z), transform.rotation);
+                        Instantiate(deadspace, new Vector3(originFloorPostion.x + (i * horizentalSize ), FloorTransform.position.y-3, FloorTransform.position.z), transform.rotation);
+                        deletedPick++;
+                    }
+                }
+                else
+                {
+                    Instantiate(floor, new Vector3(originFloorPostion.x + (i * horizentalSize ), FloorTransform.position.y, FloorTransform.position.z), transform.rotation);
+                }
+            }
+            else
+            {
+                Instantiate(floor, new Vector3(originFloorPostion.x + (i * horizentalSize ), FloorTransform.position.y, FloorTransform.position.z), transform.rotation);
+            }
+        }
+    }
+    void copyFloorA2() //추락구간 포함 바닥 형성 스크립트.
+    {
+        /* 1. 추락구간을 위해 바닥 길이를 1/2로 감소
+         * 2. 이로 인해 줄어든 1개 블럭의 길이로, 생성 개수를 2배로 늘림
+         * 3. (변화 : horizentalSize -> horizentalSize/2, mapsize -> mapsize*2)
+         */
+        //FloorTransform.position = new Vector3(originFloorPostion.x - horizentalSize, originFloorPostion.y, 0);
+        //Instantiate(floor, FloorTransform);
+        Debug.Log(deletedFloor.Length);
+        for (int i = -1; i < mapSize * 2; i++)
+        {
+            //FloorTransform.position = new Vector3(originFloorPostion.x+(i * horizentalSize), FloorTransform.position.y, 0) ;
+            //Debug.Log(FloorTransform.position.ToString());
+            if (deletedFloor.Length != 0)
+            {
+                
+                if ((deletedPick < deletedFloor.Length)&&(i == deletedFloor[deletedPick]))
+                {    //삭제 포인트 동일시.
+                   // Debug.Log(i + ", " + deletedFloor[deletedPick] + ", " + deletedPick);
+                    if (deletedPick < deletedFloor.Length)
+                    {
+                 
+                        Instantiate(deadspace, new Vector3(originFloorPostion.x + (i * horizentalSize / 2), FloorTransform.position.y - 5, FloorTransform.position.z), transform.rotation);
                         deletedPick++;
                     }
                 }
@@ -109,6 +151,15 @@ public class Mapping : MonoBehaviour {
         }
 
     }
+    void setEndline()
+    {
+        Instantiate(deadspace, new Vector3(originFloorPostion.x + (EndPostion * horizentalSize / 2), FloorTransform.position.y, FloorTransform.position.z), transform.rotation);
+        Instantiate(deadspace, new Vector3(originFloorPostion.x + (EndPostion * horizentalSize / 2), FloorTransform.position.y+1, FloorTransform.position.z), transform.rotation);
+        Instantiate(deadspace, new Vector3(originFloorPostion.x + (EndPostion * horizentalSize / 2), FloorTransform.position.y + 3, FloorTransform.position.z), transform.rotation);
+        Instantiate(deadspace, new Vector3(originFloorPostion.x + (EndPostion * horizentalSize / 2), FloorTransform.position.y + 5, FloorTransform.position.z), transform.rotation);
+        Instantiate(deadspace, new Vector3(originFloorPostion.x + (EndPostion * horizentalSize / 2), FloorTransform.position.y + 7, FloorTransform.position.z), transform.rotation);
+    }
+
 }
 
 

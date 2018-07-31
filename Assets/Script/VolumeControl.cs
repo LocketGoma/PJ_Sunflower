@@ -14,6 +14,7 @@ public class VolumeControl : MonoBehaviour {
 
     [Header("Background")]
     public AudioSource[] BackGroundSounds;
+    private float [] BGVolume;
 
     [Header("EffectSound")]
     //public EffectSound[] EffectSounds;
@@ -22,6 +23,13 @@ public class VolumeControl : MonoBehaviour {
     public AudioSource SpecialEffectSound;
     public AudioSource DeathSound;
 
+    private float JEVolume;
+    private float IGVolume;
+    private float SEVolume;
+    private float DDVolume;
+
+
+
     [Header("Volume")]
     [Range(0,2)]
     public float BgVolume;
@@ -29,20 +37,34 @@ public class VolumeControl : MonoBehaviour {
     public float EfVolume;
 
 	// Update is called once per frame
-	void Update () {
-        volumeUpdate();	
+	void Start () {
+        Debug.Log(BackGroundSounds.Length);
+        BGVolume = new float[BackGroundSounds.Length];
+        for (int i = 0; i < BackGroundSounds.Length; i++)
+        {
+            BGVolume[i]=BackGroundSounds[i].volume;
+        }
+        if (JumpEffectSound != null) JEVolume = JumpEffectSound.volume;
+        if (ItemGetEffectSound != null) IGVolume = ItemGetEffectSound.volume;
+        if (SpecialEffectSound != null) SEVolume = SpecialEffectSound.volume;
+        if (DeathSound != null) DDVolume = DeathSound.volume;
+        
 	}
+    void Update()
+    {
+        volumeUpdate();
+    }
 
     void volumeUpdate()
     {
         for(int i = 0; i < BackGroundSounds.Length; i++)
         {
-            BackGroundSounds[i].volume*=BgVolume;
+            BackGroundSounds[i].volume=BGVolume[i]*BgVolume;
         }
-        if(JumpEffectSound!=null)JumpEffectSound.volume *= EfVolume;
-        if(ItemGetEffectSound!=null)ItemGetEffectSound.volume *= EfVolume;
-        if(SpecialEffectSound!=null)SpecialEffectSound.volume *= EfVolume;
-        if(DeathSound!=null)DeathSound.volume *= EfVolume;
+        if(JumpEffectSound!=null)JumpEffectSound.volume = JEVolume * EfVolume;
+        if(ItemGetEffectSound!=null)ItemGetEffectSound.volume = IGVolume * EfVolume;
+        if(SpecialEffectSound!=null)SpecialEffectSound.volume = SEVolume * EfVolume;
+        if(DeathSound!=null)DeathSound.volume = DDVolume * EfVolume;
     }
     public void Shutdown()
     {

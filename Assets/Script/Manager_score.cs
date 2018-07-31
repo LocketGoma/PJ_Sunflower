@@ -24,9 +24,26 @@ public class Manager_score : MonoBehaviour {
 
         if (checker == true)
             score++;
+        if (score < 0)
+            score = 0;
 	}
     public void stoper()
     {
         checker = false;
+        ScoreLabel.enabled = false;
+        
+        GameObject.FindGameObjectWithTag("ScorePanel").SetActive(false);
+        ResultScore();
+    }
+    public void addScore(int point)
+    {
+        score += point;
+    }
+    void ResultScore()
+    {
+        Text ScoreLabelFinal;
+        ScoreLabelFinal = GameObject.FindGameObjectWithTag("ScorePanelFinal").GetComponent<Text>();
+        ScoreLabelFinal.enabled = true;
+        ScoreLabelFinal.text = "최종 스코어 : " + score + "";
     }
 }

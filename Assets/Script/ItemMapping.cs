@@ -11,8 +11,8 @@ using System.IO;
 class Data
 {
     public int[] itemSet;
-    public int VerticalSize;
-    public int HorizentalSize;
+    public double VerticalSize;
+    public double HorizentalSize;
 }
 
 
@@ -28,13 +28,19 @@ public class ItemMapping : MonoBehaviour {
     [Range(-10,10)]
     public float y_axis;
 
+    [Space]
+    [Header("Script")]
+    public TextAsset script=null;
+    
     [Space]                    
     [Header("Items")]
     public GameObject items;
 
     private Data data;
     private bool[] formation;
-    private bool maked = false; 
+    private bool maked = false;
+
+    private TextAsset LoadJson;
 
     /*아이템 위치 뽑아내는 방법.
      * 1. itemMap 개수 설정 (좀 많이)
@@ -51,12 +57,20 @@ public class ItemMapping : MonoBehaviour {
         //string ItemSetString = File.ReadAllText(Application.dataPath + "/Resources/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
 
         //TextAsset LoadJson = Resources.Load<TextAsset>("Data/ItemMap_01");
-        TextAsset LoadJson = (TextAsset)Resources.Load("Data/ItemMap_02", typeof(TextAsset));
+        if (script == null)
+        {
+            LoadJson = (TextAsset)Resources.Load("Data/ItemMap_02", typeof(TextAsset));
+        }
+        else
+        {
+            LoadJson = script;
+        }
+
         string ItemSetString = LoadJson.text;
-        Debug.Log(ItemSetString);        
+       // Debug.Log(ItemSetString);        
         data = JsonMapper.ToObject<Data>(ItemSetString);   //타입맞춰서 불러오고
-        Debug.Log(data.HorizentalSize);
-        Debug.Log(data.itemSet[3]);
+       // Debug.Log(data.HorizentalSize);
+       // Debug.Log(data.itemSet[3]);
 
         formation = new bool[10];
         ClearSetter();
@@ -84,7 +98,7 @@ public class ItemMapping : MonoBehaviour {
         int multiple = 1;
         for (int i = 0;i < 9; i++)
         {
-            if (input > multiple)   // input과 현재 자리값 비교.
+            if (input >= multiple)   // input과 현재 자리값 비교.
                 result++;
             multiple *= 10;         // 자리값 x 10
         }
@@ -103,6 +117,7 @@ public class ItemMapping : MonoBehaviour {
         }
         for (int i = 0; i < count; i++)
         {
+            
             formation[input / multiple]=true;       //input / 현재 배수 (몫 계산)
             input -= (input/multiple)*multiple;     //몫만큼 빼기
             multiple /= 10;                         //현재 배수 10배 감소
@@ -115,20 +130,20 @@ public class ItemMapping : MonoBehaviour {
     {
         for (int i = 1; i <10; i++) {
             if (formation[i] == true) 
-                Instantiate(items, new Vector3(x_axis + (count * data.HorizentalSize), y_axis + (data.VerticalSize * i), (float)-0.01), transform.rotation);
+                Instantiate(items, new Vector3(x_axis + (float)(count * data.HorizentalSize), y_axis + (float)(data.VerticalSize * i), items.transform.position.z), transform.rotation);
             formation[i] = false;
         }
     }
     void AllSetter()
     {
-        for (int i = 0; i < 9; i++)
+        for (int i = 1; i < 10; i++)
         {
             formation[i] = true;
         }
     }
     void ClearSetter()
     {
-        for (int i = 0; i < 9; i++)
+        for (int i = 1; i < 10; i++)
         {
             formation[i] = false;
         }

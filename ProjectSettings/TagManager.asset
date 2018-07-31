@@ -9,6 +9,10 @@ TagManager:
   - SoundControl
   - ScorePanel
   - Manager
+  - ScorePanelFinal
+  - RestartButton
+  - JumpButton
+  - MasterFloor
   layers:
   - Default
   - TransparentFX

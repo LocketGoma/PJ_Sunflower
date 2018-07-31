@@ -31,4 +31,8 @@ public class CameraSetting : MonoBehaviour {
     {
         cameraSpeed = 0;
     }
+    public void SetSpeedRepeat()
+    {
+        cameraSpeed=pMoveClass.getSpeed();
+    }
 }
