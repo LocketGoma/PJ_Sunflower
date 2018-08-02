@@ -20,12 +20,11 @@ public class Manager_score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        ScoreLabel.text = Manager_score.score.ToString();
-
-        if (checker == true)
-            score++;
         if (score < 0)
             score = 0;
+        ScoreLabel.text = Manager_score.score.ToString();
+        if (checker == true)
+            score++;
 	}
     public void stoper()
     {

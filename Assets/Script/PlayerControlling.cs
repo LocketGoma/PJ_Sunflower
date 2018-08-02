@@ -7,6 +7,8 @@ public class PlayerControlling : MonoBehaviour {
     private GameObject player;
     private Animator animator;
     private bool end = false;
+    private bool isup = false;
+    private int icestack;
 
     // Use this for initialization
     void Start () {
@@ -39,34 +41,48 @@ public class PlayerControlling : MonoBehaviour {
     }
 
     public void getHidden(){
-        CancelInvoke();
-        if (!end)
-        {            
-            this.speedUp();
-            Invoke("speedRelease", 3);
+        if (!isup)
+        {
+            CancelInvoke();
+            if (!end)
+            {
+                isup = true;
+                icestack = 0;
+                this.speedUp();
+                Invoke("speedRelease", 3);
+            }
         }
     }
     public void getSlow()
     {
-        CancelInvoke();
-        if (!end)
+        icestack++;
+        Debug.Log("iceStack:" + icestack);
+        if (isup && icestack > 2)
         {
-            this.speedDown();
-            Invoke("speedRelease", 3);
+            speedRelease();
         }
+            CancelInvoke();
+         if (!isup&&!end)
+         {
+             this.speedDown();
+             Invoke("speedRelease", 3);
+        }
+        
     }
     void speedUp()
-    {
+    {        
         player.GetComponent<PlayerMovement>().speedUp();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }
     void speedRelease()
     {
+        isup = false;
         player.GetComponent<PlayerMovement>().speedRelease();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }
     void speedDown()
     {
+        icestack = 0;
         player.GetComponent<PlayerMovement>().speedDown();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }

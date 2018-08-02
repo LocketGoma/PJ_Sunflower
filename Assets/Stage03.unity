@@ -282,7 +282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x_axis: 0
   y_axis: 0
-  script: {fileID: 4900000, guid: f7463799d956fd443bf6df9c28d2ca7b, type: 3}
+  script: {fileID: 4900000, guid: c783ab54e372efe4ca42c38e7f1852b4, type: 3}
   items: {fileID: 1018942457438888, guid: 9232adffcd065bb4280860dc4dd2f4e7, type: 2}
 --- !u!1 &206738800
 GameObject:
@@ -342,10 +342,10 @@ MonoBehaviour:
   frequency:
   - 0.03
   - 0.01
-  mapSize: 20
+  mapSize: 70
   horizentalSize: 12
-  EndPostion: 0
-  deletedFloor: 010000000300000006000000080000000b0000000d0000001100000013000000
+  EndPostion: 125
+  deletedFloor: 020000000400000007000000090000000c0000000f00000013000000180000001a0000001d000000200000002200000025000000270000002a0000002d0000003100000036000000380000003b0000003e000000400000004300000045000000480000004b0000004f0000005400000056000000590000005c0000005e000000610000006300000066000000690000006d000000720000007400000077000000
 --- !u!1 &246781994
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,8 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x_axis: 0
   y_axis: 0
-  script: {fileID: 0}
-  items: {fileID: 1033330505139242, guid: e60a3286cc8979848bf618a48124e253, type: 2}
+  script: {fileID: 4900000, guid: ba5584866986d8a46b82c6f0cc0496a9, type: 3}
+  items: {fileID: 1204012101610242, guid: 549ed468e59bf044283912a84f9b23b5, type: 2}
 --- !u!1 &327449180
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x_axis: 0
   y_axis: 0
-  script: {fileID: 4900000, guid: 739b9ffc761c33e4ca2fb6d40ebe9f13, type: 3}
+  script: {fileID: 4900000, guid: 98e148070c365bb4881a800a1a99d794, type: 3}
   items: {fileID: 1994449294976880, guid: eda0059a2322bc644929acc37f217829, type: 2}
 --- !u!1 &354237002
 GameObject:
@@ -574,6 +574,130 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &378371395
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 378371397}
+  - component: {fileID: 378371396}
+  m_Layer: 0
+  m_Name: Sonic 3 Music Ice Cap Zone Act 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &378371396
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378371395}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: b7b657a6363c33940b048dc1988d2c8d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &378371397
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 378371395}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1.3999999, z: 2.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2026271293}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &571084896
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,7 +890,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296145770}
   m_Layer: 0
-  m_Name: DynamicObejct
+  m_Name: DynamicObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -939,6 +1063,21 @@ Prefab:
     - target: {fileID: 114137775271954126, guid: 1a13cba4850ea4147be3d29426f263b0,
         type: 2}
       propertyPath: firstJumpPower
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 114137775271954126, guid: 1a13cba4850ea4147be3d29426f263b0,
+        type: 2}
+      propertyPath: speed
+      value: 0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 50958714220186002, guid: 1a13cba4850ea4147be3d29426f263b0,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114137775271954126, guid: 1a13cba4850ea4147be3d29426f263b0,
+        type: 2}
+      propertyPath: secondJumpPower
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -998,6 +1137,18 @@ Prefab:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Restart
       objectReference: {fileID: 0}
+    - target: {fileID: 114337918738059148, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: ac73f305eb2d0414186c25c7ae2cd205,
+        type: 3}
+    - target: {fileID: 114514036923898804, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: e6a8cd8ff034ca84c87f73f442098763,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 358c9528f10495d40a039952aa30c166, type: 2}
   m_IsPrefabParent: 0
@@ -1048,7 +1199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x_axis: 0
   y_axis: 0
-  script: {fileID: 0}
+  script: {fileID: 4900000, guid: 7f8a96187d2ba3d4385aed2d1c444a3b, type: 3}
   items: {fileID: 1064552311931492, guid: e629d57f34eb1ad488aa39a09f693753, type: 2}
 --- !u!1 &1812571574
 GameObject:
@@ -1350,7 +1501,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2026271293}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1921874802
 GameObject:
@@ -1652,7 +1803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2026271293}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026271292
 GameObject:
@@ -1680,6 +1831,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1.3999999, z: -2.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 378371397}
   - {fileID: 1919696405}
   - {fileID: 1979913829}
   - {fileID: 2039455501}
@@ -1697,12 +1849,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f28fbb04f4574f47a010ce6dbb928e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BackGroundSounds: []
+  BackGroundSounds:
+  - {fileID: 378371396}
   JumpEffectSound: {fileID: 1919696404}
   ItemGetEffectSound: {fileID: 0}
   SpecialEffectSound: {fileID: 1979913828}
   DeathSound: {fileID: 2039455500}
-  BgVolume: 1
+  BgVolume: 0.32
   EfVolume: 0.7
 --- !u!1 &2039455499
 GameObject:
@@ -1826,7 +1979,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2026271293}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2062829131
 GameObject:

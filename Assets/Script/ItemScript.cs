@@ -14,7 +14,7 @@ public class ItemScript : MonoBehaviour {   //말그대로 아이템 스크립�
         //Debug.Log(other.gameObject.tag);
         if (other.gameObject.tag == "Player" && !isActive)
         {
-            Debug.Log("get items");
+            //Debug.Log("get items");
             //if (typeSelected == itemTypes.normal)
             //{
                 GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager_score>().addScore(score);
