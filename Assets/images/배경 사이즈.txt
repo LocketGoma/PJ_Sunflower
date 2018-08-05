@@ -1,3 +1,0 @@
-1. background : 1200x1200
-2. floor : 1200x400
-3. objects : ~400x~1000
