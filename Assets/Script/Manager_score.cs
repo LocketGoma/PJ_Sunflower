@@ -6,6 +6,7 @@ using UnityEngine;
 public class Manager_score : MonoBehaviour {
     public static int score;
     Text ScoreLabel;
+    Ranking RankManager;
     bool checker=true;
 
     void Awake()
@@ -16,7 +17,9 @@ public class Manager_score : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ScoreLabel = GameObject.FindGameObjectWithTag("ScorePanel").GetComponent<Text>();
-	}
+        RankManager = GameObject.FindGameObjectWithTag("Rank").GetComponent<Ranking>();
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,6 +46,16 @@ public class Manager_score : MonoBehaviour {
         Text ScoreLabelFinal;
         ScoreLabelFinal = GameObject.FindGameObjectWithTag("ScorePanelFinal").GetComponent<Text>();
         ScoreLabelFinal.enabled = true;
-        ScoreLabelFinal.text = "최종 스코어 : " + score + "";
+        ScoreLabelFinal.text = "최종 스코어 : " + score + "";        
+        Invoke("popup", 2);        
+    }
+    void popup()
+    {
+        RankManager.setScore(score);
+        //RankManager.Login();
+        RankManager.SendScore();
+        // Manager_Rank.AddNewHighscore(score);
+
+        GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().Select();        
     }
 }

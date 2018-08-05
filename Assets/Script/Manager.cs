@@ -58,13 +58,13 @@ public class Manager : MonoBehaviour {
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().Shutdown();        //카메라 멈추기. 
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl> ().Shutdown();
         GetComponent<Manager_score>().stoper();
-        Select();
+        
     }
     public void ExitGame()      //게임 종료 시 <- 저장 등등
     {
             Application.Quit();
     }
-    void Select() {
+    public void Select() {
         RestartButton.SetActive(true);
         HomeButton.SetActive(true);
     }
@@ -75,8 +75,7 @@ public class Manager : MonoBehaviour {
     public void AtHome()
     {
         Starter.Manager_start.playing();
-        SceneManager.LoadScene(0);
-        
+        SceneManager.LoadScene(0);        
     }
 	
 

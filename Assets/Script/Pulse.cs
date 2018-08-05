@@ -10,8 +10,8 @@ public class Pulse : MonoBehaviour {
     void Start () {
         TextPanel = gameObject.GetComponent<Text>();
         Fadeswitch = 1;
-        Debug.Log("text");
-        Debug.Log("A:" + TextPanel.color.a);
+     //   Debug.Log("text");
+     //   Debug.Log("A:" + TextPanel.color.a);
 
         StartCoroutine("Fade");
        // if (Fadeswitch == 1) StartCoroutine("FadeOut");
@@ -28,7 +28,7 @@ public class Pulse : MonoBehaviour {
         {
             i -= 5f;
             TextPanel.color = new Vector4(TextPanel.color.r, TextPanel.color.g, TextPanel.color.b, i/255);
-            Debug.Log("FadeOut A:" + TextPanel.color.a);
+        //    Debug.Log("FadeOut A:" + TextPanel.color.a);
             yield return new WaitForSeconds(0.5f);
         }
 
@@ -44,7 +44,7 @@ public class Pulse : MonoBehaviour {
         {
             i += 5f;
             TextPanel.color = new Vector4(TextPanel.color.r, TextPanel.color.g, TextPanel.color.b, i / 255);
-            Debug.Log("FadeIn A:" + TextPanel.color.a);
+         //   Debug.Log("FadeIn A:" + TextPanel.color.a);
             yield return new WaitForSeconds(0.5f);
         }
         Fadeswitch ^= 1;

@@ -16,6 +16,8 @@ TagManager:
   - StageSelector
   - StartGroup
   - HomeButton
+  - Rank
+  - Credit
   layers:
   - Default
   - TransparentFX
