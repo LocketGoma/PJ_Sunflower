@@ -29,13 +29,25 @@ public class Manager : MonoBehaviour {
     //게임 매니징 스크립트. '메인' 화면에 들어갈 예정'.
     //테스트 시에는 'Tutorial' 씬에 속함.
     GameObject RestartButton;
+    GameObject HomeButton;
 	void Awake () {
         RestartButton = GameObject.FindGameObjectWithTag("RestartButton");
-        RestartButton.transform.position = GameObject.FindGameObjectWithTag("JumpButton").transform.position;
-        RestartButton.SetActive(false);
+        HomeButton = GameObject.FindGameObjectWithTag("HomeButton");
+        
+        if (RestartButton != null)
+        {
+            RestartButton.transform.position = GameObject.FindGameObjectWithTag("JumpButton").transform.position;
+            RestartButton.SetActive(false);
+        }
+        if (HomeButton != null)
+        {
+            HomeButton.transform.position = new Vector2(RestartButton.transform.position.x+200,RestartButton.transform.position.y);
+            HomeButton.SetActive(false);
+        }
     }
     void Update()
     {
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ExitGame();
@@ -54,10 +66,17 @@ public class Manager : MonoBehaviour {
     }
     void Select() {
         RestartButton.SetActive(true);
+        HomeButton.SetActive(true);
     }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    public void AtHome()
+    {
+        Starter.Manager_start.playing();
+        SceneManager.LoadScene(0);
+        
     }
 	
 

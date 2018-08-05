@@ -13,6 +13,9 @@ TagManager:
   - RestartButton
   - JumpButton
   - MasterFloor
+  - StageSelector
+  - StartGroup
+  - HomeButton
   layers:
   - Default
   - TransparentFX
