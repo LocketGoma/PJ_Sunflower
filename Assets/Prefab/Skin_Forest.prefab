@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 61740311589608920}
   m_Layer: 0
   m_Name: floor_forest
-  m_TagString: baseFloor
+  m_TagString: BaseFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,8 +104,8 @@ GameObject:
   - component: {fileID: 212879443448578180}
   - component: {fileID: 61498261914822686}
   m_Layer: 0
-  m_Name: deadspace
-  m_TagString: deadspace
+  m_Name: DeadSpace
+  m_TagString: DeadSpace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,20 +410,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72f2f3fff23ac0c4fa9ac320390f520a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floor: {fileID: 1217517914902702}
-  deadspace: {fileID: 1691954416098986}
-  background: {fileID: 1735244628049354}
-  skybox: {fileID: 1769782647340320}
-  bgObject:
-  - {fileID: 1223032703919088}
-  - {fileID: 1321658048025154}
-  frequency:
-  - 0.1
-  - 0.5
-  mapSize: 20
-  horizentalSize: 12
+  Floor: {fileID: 0}
+  DeadSpace: {fileID: 0}
+  BackGround: {fileID: 0}
+  Skybox: {fileID: 0}
+  IsShort: 1
+  BgObject: []
+  Frequency: []
+  MapSize: 0
+  HorizentalSize: 0
   EndPostion: 0
-  deletedFloor: 010000000300000006000000080000000b0000000d00000011000000
+  DeletedFloor: 
 --- !u!212 &212046358915413874
 SpriteRenderer:
   m_ObjectHideFlags: 1

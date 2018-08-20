@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class Pulse : MonoBehaviour {
     Text TextPanel;
-    int Fadeswitch;
+    int FadeSwitch;
     // Use this for initialization
     void Start () {
         TextPanel = gameObject.GetComponent<Text>();
-        Fadeswitch = 1;
+        FadeSwitch = 1;
      //   Debug.Log("text");
      //   Debug.Log("A:" + TextPanel.color.a);
 
         StartCoroutine("Fade");
-       // if (Fadeswitch == 1) StartCoroutine("FadeOut");
-       // if (Fadeswitch == 0) StartCoroutine("FadeIn");
+       // if (FadeSwitch == 1) StartCoroutine("FadeOut");
+       // if (FadeSwitch == 0) StartCoroutine("FadeIn");
     }
 	
 	// Update is called once per frame
@@ -33,7 +33,7 @@ public class Pulse : MonoBehaviour {
         }
 
         StopCoroutine("FadeOut");
-        Fadeswitch ^= 1;
+        FadeSwitch ^= 1;
         yield return 0;
 
     }
@@ -47,7 +47,7 @@ public class Pulse : MonoBehaviour {
          //   Debug.Log("FadeIn A:" + TextPanel.color.a);
             yield return new WaitForSeconds(0.5f);
         }
-        Fadeswitch ^= 1;
+        FadeSwitch ^= 1;
         StopCoroutine("FadeIn");
         yield return 0;
     }
@@ -58,17 +58,17 @@ public class Pulse : MonoBehaviour {
         
         while (true)
         {
-            if (Fadeswitch == 0)
+            if (FadeSwitch == 0)
             {
                 i += 10f;
                 if (i > 200)
-                    Fadeswitch ^= 1;
+                    FadeSwitch ^= 1;
             }
-            if (Fadeswitch == 1)
+            if (FadeSwitch == 1)
             {
                 i -= 10f;
                 if (i < 100)
-                    Fadeswitch ^= 1;
+                    FadeSwitch ^= 1;
             }
             TextPanel.color = new Vector4(TextPanel.color.r, TextPanel.color.g, TextPanel.color.b, i / 255);
             yield return new WaitForSeconds(0.2f);

@@ -5,34 +5,34 @@ using UnityEngine;
 public class CameraSetting : MonoBehaviour {
 
     public GameObject player;
-    public float cameraSpeed = 10f;
-    public float gap_vertex = 0f;
-    public float gap_horizental = 0f;
-    public bool autoSync = true;
+    public float CameraSpeed = 10f;
+    public float Gap_Vertex = 0f;
+    public float Gap_Horizental = 0f;
+    public bool AutoSync = true;
     private PlayerMovement pMoveClass;
 
     // Use this for initialization
     void Start () {
         pMoveClass = player.GetComponent<PlayerMovement>();
         transform.position = pMoveClass.getPosition();
-        transform.position = new Vector3(transform.position.x+3+ gap_horizental, transform.position.y+(float)2.5+ gap_vertex, transform.position.z-2);
-        if (autoSync)
+        transform.position = new Vector3(transform.position.x+3+ Gap_Horizental, transform.position.y+(float)2.5+ Gap_Vertex, transform.position.z-2);
+        if (AutoSync)
         {
-            cameraSpeed = pMoveClass.getSpeed();
+            CameraSpeed = pMoveClass.getSpeed();
         }
     }
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = new Vector3(transform.position.x + cameraSpeed, transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + CameraSpeed, transform.position.y, transform.position.z);
     }
 
     public void Shutdown()
     {
-        cameraSpeed = 0;
+        CameraSpeed = 0;
     }
     public void SetSpeedRepeat()
     {
-        cameraSpeed=pMoveClass.getSpeed();
+        CameraSpeed=pMoveClass.getSpeed();
     }
 }

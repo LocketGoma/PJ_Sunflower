@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIControl : MonoBehaviour {
     private GameObject Player;
 
-    private bool pressed;
+    private bool Pressed;
 
 
     // Use this for initialization
@@ -15,6 +15,6 @@ public class UIControl : MonoBehaviour {
 
     public void JumpPressed()
     {
-        Player.GetComponent<PlayerMovement>().playerJump();
+        Player.GetComponent<PlayerMovement>().PlayerJump();
     }
 }

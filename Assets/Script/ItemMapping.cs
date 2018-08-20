@@ -24,21 +24,21 @@ public class ItemMapping : MonoBehaviour {
     // 1~9 : 층 별 배치.
     [Header("Postions")]
     [Range (-10,10)]
-    public float x_axis;
+    public float X_Axis;
     [Range(-10,10)]
-    public float y_axis;
+    public float Y_Axis;
 
     [Space]
     [Header("Script")]
-    public TextAsset script=null;
+    public TextAsset Script=null;
     
     [Space]                    
     [Header("Items")]
-    public GameObject items;
+    public GameObject Items;
 
-    private Data data;
-    private bool[] formation;
-    private bool maked = false;
+    private Data DataObject;
+    private bool[] Formation;
+    private bool Marked = false;
 
     private TextAsset LoadJson;
 
@@ -54,98 +54,98 @@ public class ItemMapping : MonoBehaviour {
 
     void Start () {
         //string ItemSetString = File.ReadAllText(Application.streamingAssetsPath + "/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
-        //string ItemSetString = File.ReadAllText(Application.dataPath + "/Resources/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
+        //string ItemSetString = File.ReadAllText(Application.DataObjectPath + "/Resources/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
 
         //TextAsset LoadJson = Resources.Load<TextAsset>("Data/ItemMap_01");
-        if (script == null)
+        if (Script == null)
         {
             LoadJson = (TextAsset)Resources.Load("Data/ItemMap_02", typeof(TextAsset));
         }
         else
         {
-            LoadJson = script;
+            LoadJson = Script;
         }
 
         string ItemSetString = LoadJson.text;
        // Debug.Log(ItemSetString);        
-        data = JsonMapper.ToObject<Data>(ItemSetString);   //타입맞춰서 불러오고
-       // Debug.Log(data.HorizentalSize);
-       // Debug.Log(data.itemSet[3]);
+        DataObject = JsonMapper.ToObject<Data>(ItemSetString);   //타입맞춰서 불러오고
+       // Debug.Log(DataObject.HorizentalSize);
+       // Debug.Log(DataObject.ItemSet[3]);
 
-        formation = new bool[10];
+        Formation = new bool[10];
         ClearSetter();
     }
 	
 	// Update is called once per frame
 	void Update () {
         int i = 0;
-        while (data.itemSet[i] != -2&&!maked)
+        while (DataObject.itemSet[i] != -2&&!Marked)
         {
           //  Debug.Log(i);
-            this.ArraySetter(data.itemSet[i], phaser(data.itemSet[i]));
+            this.ArraySetter(DataObject.itemSet[i], Phaser(DataObject.itemSet[i]));
             this.ItemSetter(i);
             this.ClearSetter();
             i++;
         }
-        maked = true;
+        Marked = true;
 	}
-    int phaser(int input)
+    int Phaser(int Input)
     {
         int result=0;
-        if (input < 0)
+        if (Input < 0)
             return 0;
 
         int multiple = 1;
         for (int i = 0;i < 9; i++)
         {
-            if (input >= multiple)   // input과 현재 자리값 비교.
+            if (Input >= multiple)   // Input과 현재 자리값 비교.
                 result++;
             multiple *= 10;         // 자리값 x 10
         }
         return result;
     }
 	//ArraySetter : 현재 열에 해당하는 Array 값 세팅
-    void ArraySetter(int input,int count)    //input된 수, input 개수.
+    void ArraySetter(int Input,int Count)    //Input된 수, Input 개수.
     {                                       //배열쓸까..
-        int multiple = (int)Math.Pow(10, count);
-        if (count == 0)
+        int Multiple = (int)Math.Pow(10, Count);
+        if (Count == 0)
         {
-            if (input == -1)
+            if (Input == -1)
             {
                 this.AllSetter();
             }
         }
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < Count; i++)
         {
             
-            formation[input / multiple]=true;       //input / 현재 배수 (몫 계산)
-            input -= (input/multiple)*multiple;     //몫만큼 빼기
-            multiple /= 10;                         //현재 배수 10배 감소
-            if (input < 10)
-                formation[input]=true;
+            Formation[Input / Multiple]=true;       //Input / 현재 배수 (몫 계산)
+            Input -= (Input/Multiple)*Multiple;     //몫만큼 빼기
+            Multiple /= 10;                         //현재 배수 10배 감소
+            if (Input < 10)
+                Formation[Input]=true;
             
         }
     }
-    void ItemSetter(int count) //아이템을 깔아줍시다.
+    void ItemSetter(int Count) //아이템을 깔아줍시다.
     {
         for (int i = 1; i <10; i++) {
-            if (formation[i] == true) 
-                Instantiate(items, new Vector3(x_axis + (float)(count * data.HorizentalSize), y_axis + (float)(data.VerticalSize * i), items.transform.position.z), transform.rotation);
-            formation[i] = false;
+            if (Formation[i] == true) 
+                Instantiate(Items, new Vector3(X_Axis + (float)(Count * DataObject.HorizentalSize), Y_Axis + (float)(DataObject.VerticalSize * i), Items.transform.position.z), transform.rotation);
+            Formation[i] = false;
         }
     }
     void AllSetter()
     {
         for (int i = 1; i < 10; i++)
         {
-            formation[i] = true;
+            Formation[i] = true;
         }
     }
     void ClearSetter()
     {
         for (int i = 1; i < 10; i++)
         {
-            formation[i] = false;
+            Formation[i] = false;
         }
     }
 }

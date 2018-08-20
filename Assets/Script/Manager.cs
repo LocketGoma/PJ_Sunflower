@@ -12,12 +12,13 @@ using UnityEngine.SceneManagement;
  *      Dynamic : 배경 (foreground, 앞부분 위치) / 장애물 등
  *  2.  Player 관련은 Player 폴더를 따로 만들어 사용한다.
  *  3.  네이밍.
- *      1) 메소드 명은 camelcase 변형 형태 사용. 명사/동사 순으로 사용.
- *      메소드의 시작글자는 소문자.
- *      (ex : moveObject, jumpPlayer, endGame 등)
- *      2) 변수 명은 명사로 구성. 간격은 아래첨자 ('_') 를 사용
+ *      1) 메소드 명은 camelcase 변형 형태 사용. 동사/명사 순으로 사용.
+ *      메소드의 시작글자는 대문자.
+ *      (ex : MoveObject, JumpPlayer, EndGame 등)
+ *      2) 변수 명은 명사로 구성. camelcase 사용.
  *      더 큰 범위에 속하는 명사가 앞에, 세부 항목에 속하는 명사가 뒤에 온다.
  *      (ex : power_jump, power_move)
+ *      3) 태그명은 메소드명과 같은 규칙 사용.
  *  4.  클래스 네이밍은 대문자로 시작 외의 특별한 규칙 없음. 
  *      static은 꼭 필요한 경우 (Manager, PointManger 등)를 제외하고는 사용하지 말것.
  *  5.  정해지지 않은 부분에 대해서는 서로 확인 후 진행하도록 한다.    
@@ -53,11 +54,11 @@ public class Manager : MonoBehaviour {
             ExitGame();
         }
     }
-    public void GameEnd()       //스테이지 실패&종료 시
+    public void EndGame()       //스테이지 실패&종료 시
     {        
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().Shutdown();        //카메라 멈추기. 
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl> ().Shutdown();
-        GetComponent<Manager_score>().stoper();
+        GetComponent<ScoreManager>().Stoper();
         
     }
     public void ExitGame()      //게임 종료 시 <- 저장 등등
@@ -74,7 +75,7 @@ public class Manager : MonoBehaviour {
     }
     public void AtHome()
     {
-        Starter.Manager_start.playing();
+        Starter.StartManager.Playing();
         SceneManager.LoadScene(0);        
     }
 	

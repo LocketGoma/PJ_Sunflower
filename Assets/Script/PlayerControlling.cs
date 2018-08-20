@@ -4,86 +4,86 @@ using UnityEngine;
 
 public class PlayerControlling : MonoBehaviour {
 
-    private GameObject player;
-    private Animator animator;
-    private bool end = false;
-    private bool isup = false;
-    private int icestack;
+    private GameObject Player;
+    private Animator Animator;
+    private bool IsEnd = false;
+    private bool IsUp = false;
+    private int IceStack;
 
     // Use this for initialization
     void Start () {
-        player = this.gameObject;
-        animator = player.GetComponentInChildren<Animator>();
-        //Debug.Log("this:" + player.gameObject.tag);
+        Player = this.gameObject;
+        Animator = Player.GetComponentInChildren<Animator>();
+        //Debug.Log("this:" + Player.gameObject.tag);
     }
 	void OnTriggerEnter2D(Collider2D other)
     {
      //   Debug.Log(other.gameObject.tag);
-        if (other.gameObject.tag == "deadspace")
-            this.isDead();
+        if (other.gameObject.tag == "DeadSpace")
+            this.IsDead();
     }
 
-    public void isDead()
+    public void IsDead()
     {
         CancelInvoke();
-        player.GetComponent<PlayerMovement>().speedRelease();
-        player.GetComponent<BoxCollider2D>().enabled = false;
-        animator.SetBool("isOver", true);
-        if (end == false)
+        Player.GetComponent<PlayerMovement>().SpeedRelease();
+        Player.GetComponent<BoxCollider2D>().enabled = false;
+        Animator.SetBool("isOver", true);
+        if (IsEnd == false)
         {
-            GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().GameEnd();
-            end = true;
+            GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().EndGame();
+            IsEnd = true;
         }
     }
-    public bool isAlive()
+    public bool getAliveStatus()
     {
-        return !end;
+        return !IsEnd;
     }
 
     public void getHidden(){
-        if (!isup)
+        if (!IsUp)
         {
             CancelInvoke();
-            if (!end)
+            if (!IsEnd)
             {
-                isup = true;
-                icestack = 0;
-                this.speedUp();
-                Invoke("speedRelease", 3);
+                IsUp = true;
+                IceStack = 0;
+                this.SpeedUp();
+                Invoke("SpeedRelease", 3);
             }
         }
     }
     public void getSlow()
     {
-        icestack++;
-        Debug.Log("iceStack:" + icestack);
-        if (isup && icestack > 2)
+        IceStack++;
+        Debug.Log("IceStack:" + IceStack);
+        if (IsUp && IceStack > 2)
         {
-            speedRelease();
+            SpeedRelease();
         }
             CancelInvoke();
-         if (!isup&&!end)
+         if (!IsUp&&!IsEnd)
          {
-             this.speedDown();
-             Invoke("speedRelease", 3);
+             this.SpeedDown();
+             Invoke("SpeedRelease", 3);
         }
         
     }
-    void speedUp()
+    void SpeedUp()
     {        
-        player.GetComponent<PlayerMovement>().speedUp();
+        Player.GetComponent<PlayerMovement>().SpeedUp();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }
-    void speedRelease()
+    void SpeedRelease()
     {
-        isup = false;
-        player.GetComponent<PlayerMovement>().speedRelease();
+        IsUp = false;
+        Player.GetComponent<PlayerMovement>().SpeedRelease();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }
-    void speedDown()
+    void SpeedDown()
     {
-        icestack = 0;
-        player.GetComponent<PlayerMovement>().speedDown();
+        IceStack = 0;
+        Player.GetComponent<PlayerMovement>().SpeedDown();
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
     }
 

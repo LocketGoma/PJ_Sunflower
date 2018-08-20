@@ -6,8 +6,8 @@ using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
 
 public class Ranking : MonoBehaviour {
-    public int stage;
-    private int score;
+    public int Stage;
+    private int Score;
     private string[] LeaderBoardId;
 
     void Awake()
@@ -19,9 +19,9 @@ public class Ranking : MonoBehaviour {
         PlayGamesPlatform.Activate();
         //DontDestroyOnLoad(this.gameObject);
     }
-    public void setScore(int score)
+    public void setScore(int Score)
     {
-        this.score = score;
+        this.Score = Score;
     }
     /*
     public void Login()
@@ -33,10 +33,10 @@ public class Ranking : MonoBehaviour {
     */
     public void SendScore()
     {
-        Social.ReportScore(score, LeaderBoardId[stage-1], (bool success) =>
+        Social.ReportScore(Score, LeaderBoardId[Stage-1], (bool Success) =>
           {
-              if (success)
-                  PlayGamesPlatform.Instance.ShowLeaderboardUI(LeaderBoardId[stage - 1]);
+              if (Success)
+                  PlayGamesPlatform.Instance.ShowLeaderboardUI(LeaderBoardId[Stage - 1]);
           });            
     }
     public void LookLeaderBoard()

@@ -4,21 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Credit : MonoBehaviour {
-    public GameObject creditimage;
+    public GameObject CreditImage;
 	// Use this for initialization
 	void Start () {
-        creditimage.SetActive(false);
-        
+        CreditImage.SetActive(false);        
     }
-	
-	// Update is called once per frame
-
-    public void openImage()
+    public void OpenImage()
     {
-        creditimage.SetActive(true);
+        CreditImage.SetActive(true);
     }
-    public void closeImage()
+    public void CloseImage()
     {
-        creditimage.SetActive(false);
+        CreditImage.SetActive(false);
     }
 }

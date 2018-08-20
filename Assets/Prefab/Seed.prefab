@@ -78,8 +78,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc4005797ec44c4c9f439f8ebaddaed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  typeSelected: 0
-  score: 100
+  TypeSelected: 0
+  Score: 100
 --- !u!212 &212409076005990090
 SpriteRenderer:
   m_ObjectHideFlags: 1

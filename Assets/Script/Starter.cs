@@ -4,31 +4,31 @@ using UnityEngine;
 using UnityEngine.SocialPlatforms;
 
 public class Starter : MonoBehaviour {
-    private bool stillplay;
-    public static Starter Manager_start;
+    private bool StillPlay;
+    public static Starter StartManager;
     // Use this for initialization
     void Start () {
-        if (Manager_start == null)
-            Manager_start = this;
-        else if (Manager_start != this)
+        if (StartManager == null)
+            StartManager = this;
+        else if (StartManager != this)
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-        stillplay = false;
+        StillPlay = false;
     }
-    public void playing()
+    public void Playing()
     {
         Login();
-        stillplay = true;
+        StillPlay = true;
     }
-    public bool isplay()
+    public bool getPlayStatus()
     {
-        return stillplay;
+        return StillPlay;
     }
     void Login()
     {
-        Social.localUser.Authenticate((bool success) => { // handle success or failure 
-            if (true == success)
+        Social.localUser.Authenticate((bool Success) => { // handle success or failure 
+            if (true == Success)
             {
                 Debug.Log("Login Success");
             }

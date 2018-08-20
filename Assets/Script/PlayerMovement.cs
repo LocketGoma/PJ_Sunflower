@@ -4,120 +4,120 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    public GameObject player;
+    public GameObject Player;
     [Header("etc")] //여기 있으면 안됨
-    public AudioSource effectSound;
+    public AudioSource EffectSound;
     public AudioSource SpecialSound;
     public AudioSource DeadSound;
 
-    [Header("speed&power")]
-    public float speed = 10f;
-    private float defaultspeed;
+    [Header("Speed&power")]
+    public float Speed = 10f;
+    private float DefaultSpeed;
     //1단계 : 66% -> 2단계 : 50%의 출력으로.
-    public float firstJumpPower = 10f;
-    public float secondJumpPower = 7f;
+    public float JumpPowerFirst = 10f;
+    public float JumpPowerSecond = 7f;
 
 
     [Header("Options")]
-    public bool useKeyboard = true;  //디버그
+    public bool UsingKeyboard = true;  //디버그
 
 
     [Header("Don't Touch")]
-    private uint jumpStack=0; //0~2
-    private Rigidbody2D rbody;
-    private bool stillJump = false;
-    private bool isOver = false;
-    private Animator animator;
+    private uint JumpStack=0; //0~2
+    private Rigidbody2D Rbody;
+    private bool StillJump = false;
+    private bool IsOver = false;
+    private Animator Animator;
 
 
     // Use this for initialization
     void Start () {
-        rbody = player.GetComponent<Rigidbody2D>();
-        animator = player.GetComponentInChildren<Animator>();
-        defaultspeed = speed;
+        Rbody = Player.GetComponent<Rigidbody2D>();
+        Animator = Player.GetComponentInChildren<Animator>();
+        DefaultSpeed = Speed;
 	}
 	// Update is called once per frame
 	void Update () {
-      this.autoMove();
+      this.AutoMove();
         if (Input.GetKeyDown("x"))
         {
-            this.playerJump();
+            this.PlayerJump();
         }
 	}
-    void autoMove()
+    void AutoMove()
     {
-        transform.position = new Vector3(transform.position.x + speed, transform.position.y, transform.position.z);
-        if (isOver == true && speed>0)
+        transform.position = new Vector3(transform.position.x + Speed, transform.position.y, transform.position.z);
+        if (IsOver == true && Speed>0)
         {            
-            speed/=1.01f;
+            Speed/=1.01f;
         }
     }
-   public void playerJump()
+   public void PlayerJump()
     {
-       // Debug.Log(jumpStack);
-        if (this.jumpStackUp())
+       // Debug.Log(JumpStack);
+        if (this.JumpStackUp())
         {
-            effectSound.Play();
+            if(EffectSound!=null)EffectSound.Play();
           //  Debug.Log("점프 출력");
-            rbody.velocity = Vector2.zero;
-            Vector2 jumpVelocity;
-            if (stillJump)
-                jumpVelocity = new Vector2(0, secondJumpPower);
+            Rbody.velocity = Vector2.zero;
+            Vector2 JumpVelocity;
+            if (StillJump)
+                JumpVelocity = new Vector2(0, JumpPowerSecond);
             else
-                jumpVelocity = new Vector2(0, firstJumpPower);
-            rbody.AddForce(jumpVelocity, ForceMode2D.Impulse);
+                JumpVelocity = new Vector2(0, JumpPowerFirst);
+            Rbody.AddForce(JumpVelocity, ForceMode2D.Impulse);
 
-            stillJump = true;            
+            StillJump = true;            
         }
     }
     void OnTriggerEnter2D(Collider2D other)
     {
        // Debug.Log(other.ToString());
-        if (other.gameObject.tag == "baseFloor")
+        if (other.gameObject.tag == "BaseFloor")
         {
-            stackRelease();
+            StackRelease();
         }
-        if (other.gameObject.tag == "deadspace")
+        if (other.gameObject.tag == "DeadSpace")
         {
             DeadSound.Play();
-            isOver = true;
-            this.speedRelease();
-            jumpStack = 3;
+            IsOver = true;
+            this.SpeedRelease();
+            JumpStack = 3;
         }
     }
-    private void stackRelease()
+    private void StackRelease()
     {
-        jumpStack = 0;
-        stillJump = false;
+        JumpStack = 0;
+        StillJump = false;
     }
-    public bool jumpStackUp()
+    public bool JumpStackUp()
     {        
-        if (jumpStack < 2) { 
-        jumpStack++;
+        if (JumpStack < 2) { 
+        JumpStack++;
         return true;
         }
         return false;
     }    
     public float getSpeed()
     {
-        return speed;
+        return Speed;
     }
     public Vector3 getPosition()
     {
         return transform.position;
     }
 
-    public void speedUp()
+    public void SpeedUp()
     {
         SpecialSound.Play();
-        speed = defaultspeed*1.8f;
+        Speed = DefaultSpeed*1.8f;
     }
-    public void speedRelease()
+    public void SpeedRelease()
     {
-        speed = defaultspeed;
+        Speed = DefaultSpeed;
     }
-    public void speedDown()
+    public void SpeedDown()
     {
-        speed = defaultspeed * 0.5f;
+        Speed = DefaultSpeed * 0.5f;
     }
 }

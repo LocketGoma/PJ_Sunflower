@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 199409136386278898}
   m_Layer: 0
   m_Name: "\uAC00\uC2DC\uACF52"
-  m_TagString: deadspace
+  m_TagString: DeadSpace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

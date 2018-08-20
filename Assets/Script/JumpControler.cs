@@ -7,6 +7,8 @@ public class JumpControler : MonoBehaviour {
     //UI에 붙습니다.
 	// Use this for initialization
 
+    /* 미사용
+
     [Header("초기 설정")]
     public GameObject targetPlayer;
     public int maxStack = 3;
@@ -25,5 +27,6 @@ public class JumpControler : MonoBehaviour {
     {
 
     }
+    */
 
 }

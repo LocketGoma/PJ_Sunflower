@@ -18,6 +18,8 @@ TagManager:
   - HomeButton
   - Rank
   - Credit
+  - BaseFloor
+  - DeadSpace
   layers:
   - Default
   - TransparentFX

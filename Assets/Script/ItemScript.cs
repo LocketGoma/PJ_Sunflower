@@ -3,33 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemScript : MonoBehaviour {   //말그대로 아이템 스크립트.
-    public enum itemTypes { normal, hidden,slow }
-    public itemTypes typeSelected;
+    public enum itemTypes {Normal, Hidden,Slow }
+    public itemTypes TypeSelected;
 
-    public int score;
-    private bool isActive = false;
+    public int Score;
+    private bool IsActive = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log(other.gameObject.tag);
-        if (other.gameObject.tag == "Player" && !isActive)
+        if (other.gameObject.tag == "Player" && !IsActive)
         {
             //Debug.Log("get items");
             //if (typeSelected == itemTypes.normal)
             //{
-                GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager_score>().addScore(score);
+                GameObject.FindGameObjectWithTag("Manager").GetComponent<ScoreManager>().AddScore(Score);
                 //이건 점수 올려주고
             //}
-            if (typeSelected == itemTypes.hidden)
+            if (TypeSelected == itemTypes.Hidden)
             {
                 //이건 특수능력 주고                
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().getHidden();
             }
-            if (typeSelected == itemTypes.slow)
+            if (TypeSelected == itemTypes.Slow)
             {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().getSlow();
             }
-            isActive = true;
+            IsActive = true;
             Destroy(gameObject);     //수정할것.
 
         }
