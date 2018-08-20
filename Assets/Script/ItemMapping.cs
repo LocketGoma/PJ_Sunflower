@@ -7,21 +7,20 @@ using LitJson;
 using System.IO;
 //LitJson 이용.
 //http://iflife1124.tistory.com/30
-[Serializable]
-class Data
-{
-    public int[] itemSet;
-    public double VerticalSize;
-    public double HorizentalSize;
-}
-
-
 public class ItemMapping : MonoBehaviour {
     // 맵에 아이템 까는 스크립트.
     // Use this for initialization
     // 0 : 없음 (기본)
     // -1 : ALL
     // 1~9 : 층 별 배치.
+    [Serializable]
+    class Data
+    {
+        public int[] itemSet;
+        public double VerticalSize;
+        public double HorizentalSize;
+    }
+
     [Header("Postions")]
     [Range (-10,10)]
     public float X_Axis;
@@ -53,10 +52,6 @@ public class ItemMapping : MonoBehaviour {
      */
 
     void Start () {
-        //string ItemSetString = File.ReadAllText(Application.streamingAssetsPath + "/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
-        //string ItemSetString = File.ReadAllText(Application.DataObjectPath + "/Resources/Data/ItemMap_01.json");     //그냥 이렇게 쓰세요;
-
-        //TextAsset LoadJson = Resources.Load<TextAsset>("Data/ItemMap_01");
         if (Script == null)
         {
             LoadJson = (TextAsset)Resources.Load("Data/ItemMap_02", typeof(TextAsset));
@@ -65,23 +60,17 @@ public class ItemMapping : MonoBehaviour {
         {
             LoadJson = Script;
         }
-
         string ItemSetString = LoadJson.text;
-       // Debug.Log(ItemSetString);        
         DataObject = JsonMapper.ToObject<Data>(ItemSetString);   //타입맞춰서 불러오고
-       // Debug.Log(DataObject.HorizentalSize);
-       // Debug.Log(DataObject.ItemSet[3]);
 
         Formation = new bool[10];
         ClearSetter();
     }
 	
-	// Update is called once per frame
 	void Update () {
         int i = 0;
         while (DataObject.itemSet[i] != -2&&!Marked)
         {
-          //  Debug.Log(i);
             this.ArraySetter(DataObject.itemSet[i], Phaser(DataObject.itemSet[i]));
             this.ItemSetter(i);
             this.ClearSetter();

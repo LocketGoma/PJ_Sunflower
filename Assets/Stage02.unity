@@ -1714,6 +1714,11 @@ Prefab:
       propertyPath: HorizentalSize
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 114972921693861472, guid: 6aa6f4d8ea809c44eb867d3461c0d0f0,
+        type: 2}
+      propertyPath: IsShort
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114772446023733072, guid: 6aa6f4d8ea809c44eb867d3461c0d0f0, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6aa6f4d8ea809c44eb867d3461c0d0f0, type: 2}
