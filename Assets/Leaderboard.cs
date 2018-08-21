@@ -23,8 +23,7 @@
 
 
 public static class Leaderboard
-{
-        public const string achievement_finishat_stage1 = "CgkI0u_Xu48EEAIQCg"; // <GPGSID>
+{        
         public const string leaderboard_stage01 = "CgkI0u_Xu48EEAIQAQ"; // <GPGSID>
         public const string leaderboard_stage02 = "CgkI0u_Xu48EEAIQAg"; // <GPGSID>
         public const string leaderboard_stage03 = "CgkI0u_Xu48EEAIQAw"; // <GPGSID>
@@ -34,6 +33,7 @@ public static class Leaderboard
         public const string achievement_upto100kat_stage1 = "CgkI0u_Xu48EEAIQBw"; // <GPGSID>
         public const string achievement_upto100kat_stage2 = "CgkI0u_Xu48EEAIQCA"; // <GPGSID>
         public const string achievement_upto100kat_stage3 = "CgkI0u_Xu48EEAIQCQ"; // <GPGSID>
+        public const string achievement_finishat_stage1 = "CgkI0u_Xu48EEAIQCg"; // <GPGSID>
         public const string achievement_finishat_stage2 = "CgkI0u_Xu48EEAIQCw"; // <GPGSID>
         public const string achievement_finishat_stage3 = "CgkI0u_Xu48EEAIQDA"; // <GPGSID>
         public const string achievement_thank_you_for_playing = "CgkI0u_Xu48EEAIQDQ"; // <GPGSID>

@@ -120,4 +120,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         Speed = DefaultSpeed * 0.5f;
     }
+    public void SpeedZero()
+    {
+        Speed = 0;
+    }
 }

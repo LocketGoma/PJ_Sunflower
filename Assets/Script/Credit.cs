@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using UnityEngine.SocialPlatforms;
+
 public class Credit : MonoBehaviour {
     public GameObject CreditImage;
 	// Use this for initialization
@@ -12,6 +16,8 @@ public class Credit : MonoBehaviour {
     public void OpenImage()
     {
         CreditImage.SetActive(true);
+
+        Social.ReportProgress("CgkI0u_Xu48EEAIQDQ", 100f, null);
     }
     public void CloseImage()
     {

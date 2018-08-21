@@ -18,7 +18,6 @@ public class ScoreManager : MonoBehaviour {
 	void Start () {
         ScoreLabel = GameObject.FindGameObjectWithTag("ScorePanel").GetComponent<Text>();
         RankManager = GameObject.FindGameObjectWithTag("Rank").GetComponent<Ranking>();
-
     }
 	
 	// Update is called once per frame
@@ -40,6 +39,14 @@ public class ScoreManager : MonoBehaviour {
     public void AddScore(int Point)
     {
         Score += Point;
+    }
+    public void Pause()
+    {
+        Checker = false;
+    }
+    public void Release()
+    {
+        Checker = true;
     }
     void ResultScore()
     {

@@ -4,8 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - baseFloor
-  - deadspace
   - SoundControl
   - ScorePanel
   - Manager
@@ -20,6 +18,7 @@ TagManager:
   - Credit
   - BaseFloor
   - DeadSpace
+  - ReturnPanel
   layers:
   - Default
   - TransparentFX
@@ -29,7 +28,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - BackPlate
   - 
   - 
   - 

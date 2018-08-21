@@ -10,10 +10,13 @@ public class PlayerControlling : MonoBehaviour {
     private bool IsUp = false;
     private int IceStack;
 
+    private CameraSetting CameraStatus;
+
     // Use this for initialization
     void Start () {
         Player = this.gameObject;
         Animator = Player.GetComponentInChildren<Animator>();
+        CameraStatus = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>();
         //Debug.Log("this:" + Player.gameObject.tag);
     }
 	void OnTriggerEnter2D(Collider2D other)
@@ -72,19 +75,28 @@ public class PlayerControlling : MonoBehaviour {
     void SpeedUp()
     {        
         Player.GetComponent<PlayerMovement>().SpeedUp();
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
+        CameraStatus.SetSpeedRepeat();
     }
     void SpeedRelease()
     {
         IsUp = false;
         Player.GetComponent<PlayerMovement>().SpeedRelease();
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
+        CameraStatus.SetSpeedRepeat();
     }
     void SpeedDown()
     {
         IceStack = 0;
         Player.GetComponent<PlayerMovement>().SpeedDown();
-        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().SetSpeedRepeat();
+        CameraStatus.SetSpeedRepeat();
+    }
+    public void AtPause()
+    {
+        Player.GetComponent<PlayerMovement>().SpeedZero();
+        CameraStatus.SetSpeedRepeat();
+    }
+    public void AtRelease()
+    {
+        this.SpeedRelease();
     }
 
 

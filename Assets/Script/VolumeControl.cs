@@ -73,5 +73,18 @@ public class VolumeControl : MonoBehaviour {
             BackGroundSounds[i].Stop();
         }        
     }
-
+    public void PauseSound()
+    {
+        for (int i = 0; i < BackGroundSounds.Length; i++)
+        {
+            BackGroundSounds[i].Pause();
+        }
+    }
+    public void ReleaseSound()
+    {
+        for (int i = 0; i < BackGroundSounds.Length; i++)
+        {
+            BackGroundSounds[i].UnPause();
+        }
+    }
 }

@@ -21,9 +21,7 @@ using UnityEngine.SceneManagement;
  *      3) 태그명은 메소드명과 같은 규칙 사용.
  *  4.  클래스 네이밍은 대문자로 시작 외의 특별한 규칙 없음. 
  *      static은 꼭 필요한 경우 (Manager, PointManger 등)를 제외하고는 사용하지 말것.
- *  5.  정해지지 않은 부분에 대해서는 서로 확인 후 진행하도록 한다.    
- * 
- * 
+ *    
  * */
 
 public class Manager : MonoBehaviour {
@@ -31,10 +29,18 @@ public class Manager : MonoBehaviour {
     //테스트 시에는 'Tutorial' 씬에 속함.
     GameObject RestartButton;
     GameObject HomeButton;
+    GameObject ReleasePanel;
+    ScoreManager SCManager;
+    //GameObject HomeButtonAtPause;
+    public bool IsMain = false;
+    private bool IsPause = false;
+    private bool IsEnd = false;
+
 	void Awake () {
         RestartButton = GameObject.FindGameObjectWithTag("RestartButton");
         HomeButton = GameObject.FindGameObjectWithTag("HomeButton");
-        
+        ReleasePanel = GameObject.FindGameObjectWithTag("ReturnPanel");
+        SCManager = GetComponent<ScoreManager>();
         if (RestartButton != null)
         {
             RestartButton.transform.position = GameObject.FindGameObjectWithTag("JumpButton").transform.position;
@@ -45,21 +51,29 @@ public class Manager : MonoBehaviour {
             HomeButton.transform.position = new Vector2(RestartButton.transform.position.x+200,RestartButton.transform.position.y);
             HomeButton.SetActive(false);
         }
+        if (ReleasePanel != null)
+        {
+            ReleasePanel.SetActive(false);
+        }
     }
     void Update()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.Escape))
+    {        
+        if (!IsEnd&&(Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("s")))
         {
-            ExitGame();
+            if (IsMain)
+                ExitGame();
+            else
+                PauseGame();
         }
+        if (IsPause)
+            PauseGame();
     }
     public void EndGame()       //스테이지 실패&종료 시
     {        
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().Shutdown();        //카메라 멈추기. 
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl> ().Shutdown();
-        GetComponent<ScoreManager>().Stoper();
-        
+        SCManager.Stoper();
+        IsEnd = true;
     }
     public void ExitGame()      //게임 종료 시 <- 저장 등등
     {
@@ -71,6 +85,7 @@ public class Manager : MonoBehaviour {
     }
     public void Restart()
     {
+        this.ReleaseGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     public void AtHome()
@@ -78,6 +93,31 @@ public class Manager : MonoBehaviour {
         Starter.StartManager.Playing();
         SceneManager.LoadScene(0);        
     }
-	
+    void PauseGame()
+    {
+        Time.timeScale = 0;
+        IsPause = true;
+
+        ReleasePanel.SetActive(true);
+        Select();
+        SCManager.Pause();
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().AtPause();
+        GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl>().PauseSound();
+        if (Input.GetKeyDown(KeyCode.Escape))
+            this.ReleaseGame();
+    }
+	public void ReleaseGame()
+    {
+        Time.timeScale = 1;
+        IsPause = false;
+
+        ReleasePanel.SetActive(false);
+        RestartButton.SetActive(false);
+        HomeButton.SetActive(false);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().AtRelease();
+        GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl>().ReleaseSound();
+        SCManager.Release();
+
+    }
 
 }
