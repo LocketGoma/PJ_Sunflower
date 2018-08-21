@@ -53,7 +53,8 @@ public class ScoreManager : MonoBehaviour {
         Text ScoreLabelFinal;
         ScoreLabelFinal = GameObject.FindGameObjectWithTag("ScorePanelFinal").GetComponent<Text>();
         ScoreLabelFinal.enabled = true;
-        ScoreLabelFinal.text = "최종 스코어 : " + Score + "";        
+        ScoreLabelFinal.text = "최종 스코어 : " + Score + "";
+        RankManager.AchievementManager(Score);
         Invoke("Popup", 2);        
     }
     void Popup()

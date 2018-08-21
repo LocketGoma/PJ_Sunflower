@@ -628,6 +628,11 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 652099805}
+    - target: {fileID: 114137775271954126, guid: 1a13cba4850ea4147be3d29426f263b0,
+        type: 2}
+      propertyPath: UsingKeyboard
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a13cba4850ea4147be3d29426f263b0, type: 2}
   m_IsPrefabParent: 0
@@ -1123,12 +1128,12 @@ Prefab:
     - target: {fileID: 224257053004519042, guid: 358c9528f10495d40a039952aa30c166,
         type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 224928060078406172, guid: 358c9528f10495d40a039952aa30c166,
         type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114337918738059148, guid: 358c9528f10495d40a039952aa30c166,
         type: 2}
@@ -1230,6 +1235,31 @@ Prefab:
         type: 2}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: ReleaseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 224048181674456026, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114333018175597814, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1360156721}
+    - target: {fileID: 114333018175597814, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PauseGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 224826375331844426, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224178927828864362, guid: 358c9528f10495d40a039952aa30c166,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 358c9528f10495d40a039952aa30c166, type: 2}

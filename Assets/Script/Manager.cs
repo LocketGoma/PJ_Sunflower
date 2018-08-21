@@ -60,20 +60,26 @@ public class Manager : MonoBehaviour {
     {        
         if (!IsEnd&&(Input.GetKeyDown(KeyCode.Escape)|| Input.GetKeyDown("s")))
         {
-            if (IsMain)
-                ExitGame();
-            else
-                PauseGame();
+           Debug.Log("ESC");
+                if (IsMain)
+                {
+                    ExitGame();
+                }
+                else
+                {
+                    PauseGame();
+                }
         }
         if (IsPause)
             PauseGame();
     }
     public void EndGame()       //스테이지 실패&종료 시
-    {        
+    {
+        IsEnd = true;
         GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraSetting>().Shutdown();        //카메라 멈추기. 
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl> ().Shutdown();
         SCManager.Stoper();
-        IsEnd = true;
+        
     }
     public void ExitGame()      //게임 종료 시 <- 저장 등등
     {
@@ -90,21 +96,25 @@ public class Manager : MonoBehaviour {
     }
     public void AtHome()
     {
+        this.ReleaseGame();
         Starter.StartManager.Playing();
         SceneManager.LoadScene(0);        
     }
-    void PauseGame()
+    public void PauseGame()
     {
-        Time.timeScale = 0;
-        IsPause = true;
+        if (!IsEnd)
+        {
+            Time.timeScale = 0;
+            IsPause = true;
 
-        ReleasePanel.SetActive(true);
-        Select();
-        SCManager.Pause();
-        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().AtPause();
-        GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl>().PauseSound();
-        if (Input.GetKeyDown(KeyCode.Escape))
-            this.ReleaseGame();
+            ReleasePanel.SetActive(true);
+            Select();
+            SCManager.Pause();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().AtPause();
+            GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl>().PauseSound();
+            if (Input.GetKeyDown(KeyCode.Escape))
+                this.ReleaseGame();
+        }
     }
 	public void ReleaseGame()
     {
@@ -117,7 +127,6 @@ public class Manager : MonoBehaviour {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControlling>().AtRelease();
         GameObject.FindGameObjectWithTag("SoundControl").GetComponent<VolumeControl>().ReleaseSound();
         SCManager.Release();
-
     }
 
 }

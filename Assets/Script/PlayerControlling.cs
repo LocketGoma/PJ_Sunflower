@@ -59,7 +59,7 @@ public class PlayerControlling : MonoBehaviour {
     public void getSlow()
     {
         IceStack++;
-        Debug.Log("IceStack:" + IceStack);
+        //Debug.Log("IceStack:" + IceStack);
         if (IsUp && IceStack > 2)
         {
             SpeedRelease();

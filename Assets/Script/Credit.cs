@@ -15,8 +15,8 @@ public class Credit : MonoBehaviour {
     }
     public void OpenImage()
     {
+        PlayGamesPlatform.Activate();
         CreditImage.SetActive(true);
-
         Social.ReportProgress("CgkI0u_Xu48EEAIQDQ", 100f, null);
     }
     public void CloseImage()
