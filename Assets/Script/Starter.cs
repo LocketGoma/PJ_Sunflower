@@ -14,7 +14,7 @@ public class Starter : MonoBehaviour {
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
-        StillPlay = false;
+        StillPlay = false;        
     }
     public void Playing()
     {
@@ -32,8 +32,10 @@ public class Starter : MonoBehaviour {
             {
                 Debug.Log("Login Success");
             }
-            else { //Debug.Log("Login Fail");
-                ; }
+            else
+            {
+                Debug.Log("Login Fail");
+            }
         });
     }
 }
