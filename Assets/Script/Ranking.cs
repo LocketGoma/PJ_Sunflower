@@ -4,7 +4,7 @@ using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
-//#define Android_build
+#define Android_build
 public class Ranking : MonoBehaviour {
     public int Stage;
     private int Score;
