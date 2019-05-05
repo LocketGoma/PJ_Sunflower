@@ -1,10 +1,12 @@
-﻿using System.Collections;
+﻿#define Android_build
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
-#define Android_build
+
 public class Ranking : MonoBehaviour {
     public int Stage;
     private int Score;
