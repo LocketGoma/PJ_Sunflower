@@ -7,6 +7,7 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using UnityEngine.SocialPlatforms;
 
+//#define Android_build
 public class Credit : MonoBehaviour {
     public GameObject CreditImage;
 	// Use this for initialization
@@ -15,9 +16,12 @@ public class Credit : MonoBehaviour {
     }
     public void OpenImage()
     {
+		#if Android_build
         PlayGamesPlatform.Activate();
-        CreditImage.SetActive(true);
         Social.ReportProgress("CgkI0u_Xu48EEAIQDQ", 100f, null);
+		#endif
+
+		CreditImage.SetActive(true);
     }
     public void CloseImage()
     {

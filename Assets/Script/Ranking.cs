@@ -4,14 +4,14 @@ using UnityEngine;
 using GooglePlayGames;
 using UnityEngine.SocialPlatforms;
 using GooglePlayGames.BasicApi;
-
+//#define Android_build
 public class Ranking : MonoBehaviour {
     public int Stage;
     private int Score;
     private string[] LeaderBoardId;
     private string[] Achieve50k;
     private string[] Achieve100k;    
-
+	#if Android_build
     void Awake()
     {
         LeaderBoardId = new string[3];
@@ -69,4 +69,5 @@ public class Ranking : MonoBehaviour {
             Social.ReportProgress(Achieve100k[Stage - 1], 100f, null);
         }
     }
+	#endif
 }

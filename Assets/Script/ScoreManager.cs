@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-
+//#define Android_build
 public class ScoreManager : MonoBehaviour {
     public static int Score;
     Text ScoreLabel;
@@ -54,16 +54,19 @@ public class ScoreManager : MonoBehaviour {
         ScoreLabelFinal = GameObject.FindGameObjectWithTag("ScorePanelFinal").GetComponent<Text>();
         ScoreLabelFinal.enabled = true;
         ScoreLabelFinal.text = "최종 스코어 : " + Score + "";
-        RankManager.AchievementManager(Score);
+		#if Android_build
+		RankManager.AchievementManager(Score);
+		#endif
         Invoke("Popup", 2);        
     }
     void Popup()
     {
+		#if Android_build
         RankManager.setScore(Score);
         //RankManager.Login();
         RankManager.SendScore();
         // Manager_Rank.AddNewHighScore(Score);
-
+		#endif
         GameObject.FindGameObjectWithTag("Manager").GetComponent<Manager>().Select();        
     }
 }
