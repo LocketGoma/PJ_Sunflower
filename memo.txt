@@ -1,3 +1,0 @@
-Id : 141590656978
-AUTH : 141590656978-tppgh70tec8veijl0itsfrmm9s755beu.apps.googleusercontent.com
-OAuth : F5:B1:28:3E:C5:CD:0D:71:53:6B:C1:35:B5:84:7B:BE:38:1B:FA:B4
